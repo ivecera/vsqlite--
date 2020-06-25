@@ -51,7 +51,7 @@ namespace sqlite{
 
     struct unknown_t{};
     struct null_t{};
-    typedef std::vector<boost::uint8_t> blob_t;
+    typedef std::vector<std::uint8_t> blob_t;
     typedef std::shared_ptr<blob_t> blob_ref_t;
 
     typedef boost::variant<
