@@ -32,7 +32,7 @@
 #ifndef GUARD_SQLITE_CONNECTION_HPP_INCLUDED
 #define GUARD_SQLITE_CONNECTION_HPP_INCLUDED
 #include <string>
-#include <boost/cstdint.hpp>
+#include <cstdint>
 #include <boost/noncopyable.hpp>
 struct sqlite3;
 
@@ -97,7 +97,7 @@ namespace sqlite{
         /** \brief Returns the last inserted rowid in the currently opened
          *  database
          */
-        boost::int64_t get_last_insert_rowid();
+        std::int64_t get_last_insert_rowid();
 
     private:
         friend struct private_accessor;

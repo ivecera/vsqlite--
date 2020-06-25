@@ -34,7 +34,7 @@
 
 #include <boost/variant.hpp>
 #include <boost/shared_ptr.hpp>
-#include <boost/cstdint.hpp>
+#include <cstdint>
 #include <vector>
 #include <string>
 
@@ -57,7 +57,7 @@ namespace sqlite{
     typedef boost::variant<
             unknown_t,
             int,
-            boost::int64_t,
+            std::int64_t,
             long double,
             std::string,
             null_t,

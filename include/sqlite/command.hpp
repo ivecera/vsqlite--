@@ -32,7 +32,7 @@
 #ifndef GUARD_SQLITE_COMMAND_HPP_INCLUDED
 #define GUARD_SQLITE_COMMAND_HPP_INCLUDED
 
-#include <boost/cstdint.hpp>
+#include <cstdint>
 #include <boost/noncopyable.hpp>
 #include <sqlite/connection.hpp>
 #include <vector>
@@ -99,7 +99,7 @@ namespace sqlite{
           * \param idx 1 based index of the placeholder within the sql statement
           * \param v 64-Bit integer value which should replace the placeholder
           */
-        void bind(int idx, boost::int64_t v);
+        void bind(int idx, std::int64_t v);
 
         /** \brief binds the double v to the given 1 based index
           * \param idx 1 based index of the placeholder within the sql statement
@@ -143,12 +143,12 @@ namespace sqlite{
           */
         command & operator % (int p);
 
-        /** \brief replacement for void command::bind(int idx,boost::int64_t);
+        /** \brief replacement for void command::bind(int idx,std::int64_t);
           * Indexes are given automatically first call uses 1 as index, second 2
           * and so on
           * \param p should be a 64-Bit integer
           */
-        command & operator % (boost::int64_t p);
+        command & operator % (std::int64_t p);
 
         /** \brief replacement for void command::bind(int idx,double);
           * Indexes are given automatically first call uses 1 as index, second 2

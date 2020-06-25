@@ -95,7 +95,7 @@ namespace sqlite{
         switch( get_column_type(idx) ) {
             case sqlite::integer:
                 {
-                    boost::int64_t i = get_int64(idx);
+                    std::int64_t i = get_int64(idx);
                     if( i > std::numeric_limits<int>::max()
                         || i < std::numeric_limits<int>::min() ) {
                         v = i;
@@ -133,7 +133,7 @@ namespace sqlite{
         return sqlite3_column_int(m_params->statement,idx);
     }
 
-    boost::int64_t result::get_int64(int idx){
+    std::int64_t result::get_int64(int idx){
         access_check(idx);
         if(sqlite3_column_type(m_params->statement,idx) == SQLITE_NULL)
             return 0;

@@ -123,7 +123,7 @@ namespace sqlite{
           * \param idx column index of the current row in the results
           * \return a 64-Bit Integer
           */
-        boost::int64_t get_int64(int idx);
+        std::int64_t get_int64(int idx);
 
         /** \brief Returns the data at the given index as String
           * \param idx column index of the current row in the results
