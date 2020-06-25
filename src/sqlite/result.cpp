@@ -36,6 +36,7 @@
 #include <sqlite3.h>
 #include <memory>
 #include <limits>
+#include <cstring>
 
 namespace sqlite{
     namespace detail {
@@ -171,7 +172,7 @@ namespace sqlite{
         size_t size = sqlite3_column_bytes(m_params->statement,idx);
         if(size > buf_size)
             throw buffer_too_small_exception("buffer too small");
-        memcpy(buf,sqlite3_column_blob(m_params->statement,idx),size);
+        std::memcpy(buf,sqlite3_column_blob(m_params->statement,idx),size);
     }
 
     void result::get_binary(int idx, std::vector<unsigned char> & v){
@@ -180,7 +181,7 @@ namespace sqlite{
             return;
         size_t size = sqlite3_column_bytes(m_params->statement,idx);
         v.resize(size,0);
-        memcpy(&v[0],sqlite3_column_blob(m_params->statement,idx),size);
+        std::memcpy(&v[0],sqlite3_column_blob(m_params->statement,idx),size);
     }
 
     std::string result::get_column_name(int idx){
