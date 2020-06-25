@@ -1,7 +1,7 @@
 LIBVSQLITE_VERSION=`cat VERSION`
 AUTOMAKE_OPTIONS = subdir-objects foreign
 ACLOCAL_AMFLAGS = ${ACLOCAL_FLAGS} -I m4 -I build-aux
-AM_CXXFLAGS = -W -Wall -pedantic -W -std=c++0x $(BOOST_CPPFLAGS)
+AM_CXXFLAGS = -W -Wall -pedantic -W -std=c++17 $(BOOST_CPPFLAGS)
 
 lib_LTLIBRARIES = libvsqlitepp.la
 
