@@ -32,7 +32,7 @@
 #ifndef GUARD_SQLITE_EXT_VARIANT_HPP_INCLUDED
 #define GUARD_SQLITE_EXT_VARIANT_HPP_INCLUDED
 
-#include <boost/variant.hpp>
+#include <variant>
 #include <memory>
 #include <cstdint>
 #include <vector>
@@ -54,7 +54,7 @@ namespace sqlite{
     typedef std::vector<std::uint8_t> blob_t;
     typedef std::shared_ptr<blob_t> blob_ref_t;
 
-    typedef boost::variant<
+    typedef std::variant<
             unknown_t,
             int,
             std::int64_t,

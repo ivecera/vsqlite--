@@ -107,7 +107,7 @@ namespace sqlite{
                 break;
             case sqlite::blob:
                 v = std::make_shared<blob_t>();
-                get_binary(idx, *boost::get<blob_ref_t>(v));
+                get_binary(idx, *std::get<blob_ref_t>(v));
                 break;
             case sqlite::real:
                 {
