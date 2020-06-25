@@ -43,7 +43,7 @@ namespace sqlite{
     query::~query(){
     }
 
-    boost::shared_ptr<result> query::emit_result(){
+    std::shared_ptr<result> query::emit_result(){
         bool ended = !step();
         result_construct_params_private * p = new result_construct_params_private();
         p->access_check = boost::bind(&query::access_check,this);
@@ -52,10 +52,10 @@ namespace sqlite{
         p->row_count    = sqlite3_changes(p->db);
         p->statement    = stmt;
         p->ended        = ended;
-        return boost::shared_ptr<result>(new result(result::construct_params(p)));
+        return std::shared_ptr<result>(new result(result::construct_params(p)));
     }
 
-    boost::shared_ptr<result> query::get_result(){
+    std::shared_ptr<result> query::get_result(){
         access_check();
         result_construct_params_private * p = new result_construct_params_private();
         p->access_check = boost::bind(&query::access_check,this);
@@ -64,7 +64,7 @@ namespace sqlite{
         p->row_count    = sqlite3_changes(p->db);
         p->statement    = stmt;
         p->ended        = false;
-        return boost::shared_ptr<result>(new result(result::construct_params(p)));
+        return std::shared_ptr<result>(new result(result::construct_params(p)));
     }
     void query::access_check(){
         command::access_check();

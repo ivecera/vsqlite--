@@ -34,7 +34,7 @@
 #include <sqlite/result.hpp>
 #include <sqlite/query.hpp>
 #include <sqlite3.h>
-#include <boost/make_shared.hpp>
+#include <memory>
 #include <limits>
 
 namespace sqlite{
@@ -106,7 +106,7 @@ namespace sqlite{
                 }
                 break;
             case sqlite::blob:
-                v = boost::make_shared<blob_t>();
+                v = std::make_shared<blob_t>();
                 get_binary(idx, *boost::get<blob_ref_t>(v));
                 break;
             case sqlite::real:

@@ -51,7 +51,7 @@ namespace sqlite{
       */
     struct result : boost::noncopyable{
     private:
-        typedef boost::shared_ptr<result_construct_params_private> construct_params;
+        typedef std::shared_ptr<result_construct_params_private> construct_params;
         friend struct query;
         result(construct_params);
     public:
@@ -171,7 +171,7 @@ namespace sqlite{
         int m_row_count;
     };
 
-    typedef boost::shared_ptr<result> result_type;
+    typedef std::shared_ptr<result> result_type;
 }
 
 #endif //GUARD_SQLITE_RESULT_HPP_INCLUDED
