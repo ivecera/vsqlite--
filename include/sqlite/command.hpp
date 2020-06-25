@@ -33,7 +33,6 @@
 #define GUARD_SQLITE_COMMAND_HPP_INCLUDED
 
 #include <cstdint>
-#include <boost/noncopyable.hpp>
 #include <sqlite/connection.hpp>
 #include <vector>
 
@@ -54,7 +53,7 @@ namespace sqlite{
     /** \brief \a command is the base class of all sql command classes
       * An object of this class is not copyable
       */
-    struct command : boost::noncopyable{
+    struct command {
         /** \brief \a command constructor
           * \param con takes a reference to the database connection type
           *        \a connection
@@ -172,6 +171,12 @@ namespace sqlite{
           * (For blob/binary data)
           */
         command & operator % (std::vector<unsigned char> const & p);
+
+	/*
+	 * Make non-copyable
+	 */
+	command(const command&) = delete;
+	command& operator=(const command &) = delete;
 
     protected:
         void access_check();

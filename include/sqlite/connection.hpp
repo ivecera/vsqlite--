@@ -33,7 +33,6 @@
 #define GUARD_SQLITE_CONNECTION_HPP_INCLUDED
 #include <string>
 #include <cstdint>
-#include <boost/noncopyable.hpp>
 struct sqlite3;
 
 namespace sqlite{
@@ -50,7 +49,7 @@ namespace sqlite{
       * you can see a connection object as handle to the database
       * An object of this class is not copyable
       */
-    struct connection : boost::noncopyable{
+    struct connection {
         /** \brief constructor opens the database
           * \param db filename of the database file
           *           if the given file already exists the file will be opened
@@ -98,6 +97,12 @@ namespace sqlite{
          *  database
          */
         std::int64_t get_last_insert_rowid();
+
+	/*
+	 * Make non-copyable
+	 */
+	connection(const connection&) = delete;
+	connection operator=(const connection&) = delete;
 
     private:
         friend struct private_accessor;

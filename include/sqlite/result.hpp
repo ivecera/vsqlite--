@@ -32,7 +32,6 @@
 #ifndef GUARD_SQLITE_RESULT_HPP_INCLUDED
 #define GUARD_SQLITE_RESULT_HPP_INCLUDED
 
-#include <boost/noncopyable.hpp>
 #include <sqlite/ext/variant.hpp>
 #include <sqlite/deprecated.hpp>
 #include <stdexcept>
@@ -49,7 +48,7 @@ namespace sqlite{
       * An object of this class is not copyable.
       *
       */
-    struct result : boost::noncopyable{
+    struct result {
     private:
         typedef std::shared_ptr<result_construct_params_private> construct_params;
         friend struct query;
@@ -163,6 +162,12 @@ namespace sqlite{
           * \return a std::string object containing the name of the column
           */
         std::string get_column_name(int idx);
+
+	/*
+	 * Make non-copyable
+	 */
+	result(const result&) = delete;
+	result& operator=(const result&) = delete;
     private:
         void access_check(int);
     private:
