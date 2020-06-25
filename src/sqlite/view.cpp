@@ -29,7 +29,8 @@
  POSSIBILITY OF SUCH DAMAGE.
 
 ##############################################################################*/
-#include <boost/format.hpp>
+
+#include <fmt/core.h>
 #include <sqlite/connection.hpp>
 #include <sqlite/execute.hpp>
 #include <sqlite/view.hpp>
@@ -45,29 +46,29 @@ namespace sqlite{
                       std::string const & database,
                       std::string const & alias,
                       std::string const & sql_query){
-        boost::format fmt("CREATE %1% VIEW %2%.%3% AS %4%;");
-        fmt % (temporary ? "TEMPORARY" : "") % database % alias % sql_query;
-        execute(m_con,fmt.str(),true);
+        std::string cmd = fmt::format("CREATE {1} VIEW {2}.{3} AS {4};",
+                                      temporary ? "TEMPORARY" : "", database,
+                                      alias, sql_query);
+        execute(m_con,cmd.c_str(),true);
     }
 
     void view::create(bool temporary,
                       std::string const & alias,
                       std::string const & sql_query){
-        boost::format fmt("CREATE %1% VIEW %2% AS %3%;");
-        fmt % (temporary ? "TEMPORARY" : "") % alias % sql_query;
-        execute(m_con,fmt.str(),true);
+        std::string cmd = fmt::format("CREATE {1} VIEW {2} AS {3};",
+                                      temporary ? "TEMPORARY" : "", alias,
+                                      sql_query);
+        execute(m_con,cmd.c_str(),true);
     }
 
     void view::drop(std::string const & alias){
-        boost::format fmt("DROP VIEW %1%;");
-        fmt % alias;
-        execute(m_con,fmt.str(),true);
+        std::string cmd = fmt::format("DROP VIEW {1};", alias);
+        execute(m_con,cmd.c_str(),true);
     }
 
     void view::drop(std::string const & database, std::string const & alias){
-        boost::format fmt("DROP VIEW %1%.%2%;");
-        fmt % database % alias;
-        execute(m_con,fmt.str(),true);
+        std::string cmd = fmt::format("DROP VIEW {1}.{2};", database, alias);
+        execute(m_con,cmd.c_str(),true);
     }
 }
 

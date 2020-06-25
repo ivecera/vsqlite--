@@ -30,7 +30,8 @@
  POSSIBILITY OF SUCH DAMAGE.
 
 ##############################################################################*/
-#include <boost/format.hpp>
+
+#include <fmt/format.h>
 #include <sqlite/database_exception.hpp>
 #include <sqlite/execute.hpp>
 #include <sqlite/connection.hpp>
@@ -129,15 +130,14 @@ namespace sqlite{
     }
 
     void connection::attach(std::string const & db, std::string const & alias){
-        boost::format fmt("ATTACH DATABASE %1% AS %2%;");
-        fmt % db % alias;
-        execute(*this,fmt.str(),true);
+        std::string cmd = fmt::format("ATTACH DATABASE %1% AS %2%;", db,
+                                      alias);
+        execute(*this,cmd.c_str(),true);
     }
 
     void connection::detach(std::string const & alias){
-        boost::format fmt("DETACH DATABASE %1%;");
-        fmt % alias;
-        execute(*this,fmt.str(),true);
+        std::string cmd = fmt::format("DETACH DATABASE %1%;", alias);
+        execute(*this,cmd.c_str(),true);
     }
 
     std::int64_t connection::get_last_insert_rowid(){

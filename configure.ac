@@ -10,6 +10,8 @@ dnl -lboost_system -lboost_filesystem
 BOOST_REQUIRE([1.33.0])
 BOOST_FILESYSTEM
 
+PKG_CHECK_MODULES([FMT], [fmt])
+
 dnl -------------------------------------------
 dnl test "$prefix" = "NONE" && prefix=/usr/local
 dnl test "$exec_prefix" = "NONE" && exec_prefix=/usr/local
